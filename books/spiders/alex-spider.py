@@ -5,7 +5,7 @@ import scrapy
 class BooksSpider(scrapy.Spider):
     name = "Alex-tool"
     allowed_domains = ["https://www.traghettiper-isole-golfo-napoli.it/"]
-    start_urls = ['https://www.traghettiper-isole-golfo-napoli.it']
+    start_urls = ['https://www.traghettiper-isole-golfo-napoli.it',]
     
 rules = (
         Rule(LinkExtractor(allow=('tp-magazine', ), deny=('subsection\.php', ))),
