@@ -20,6 +20,6 @@ class MySpider(CrawlSpider):
         self.logger.info('Hi, this is an item page! %s', response.url)
         item = scrapy.Item()
         item['id'] = response.xpath('//td[@id="item_id"]/text()').re(r'ID: (\d+)')
-        item['name'] = response.xpath('//td[@id="item_name"]/text()').get()
+        item['name'] = response.xpath('//*[@id="ContentPlaceHolder_Header_HeadingBread_TagH1"]').get()
         item['description'] = response.xpath('//td[@id="item_description"]/text()').get()
         return item
