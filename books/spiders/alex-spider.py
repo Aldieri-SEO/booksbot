@@ -5,12 +5,10 @@ import scrapy
 class BooksSpider(scrapy.Spider):
     name = "Alex-tool"
     allowed_domains = ["https://www.traghettiper-isole-golfo-napoli.it/"]
-    start_urls = [
-        'https://www.traghettiper-isole-golfo-napoli.it/',
-    ]
+    start_urls = ['https://www.traghettiper-isole-golfo-napoli.it']
     
 rules = (
-        Rule(LinkExtractor(allow=('')), callback="parse_items", follow=True),
+        Rule(LinkExtractor(allow=('tp-magazine', )),
     )
 def parse_items(self, response):
         item = UrlscraperItem()
