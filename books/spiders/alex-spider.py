@@ -3,10 +3,10 @@ import scrapy
 
 
 class BooksSpider(scrapy.Spider):
-    name = "books"
-    allowed_domains = ["books.toscrape.com"]
+    name = "Alex-Bot"
+    allowed_domains = ["traghettiper-isole-golfo-napoli.it"]
     start_urls = [
-        'http://books.toscrape.com/',
+        'https://www.traghettiper-isole-golfo-napoli.it/',
     ]
 
     def parse(self, response):
