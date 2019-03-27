@@ -7,7 +7,7 @@ from scrapy.http import Request
 
 class BooksSpider(scrapy.Spider):
     name = "basic"
-    allowed_domains = ["traghettilines"]
+    allowed_domains = ["traghettilines.it"]
     #                 ^ allowed domain should be name of domain that you wanna scrap
     start_urls = (
         'https://www.traghettilines.it/',
