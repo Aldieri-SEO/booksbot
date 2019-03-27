@@ -8,7 +8,7 @@ class BooksSpider(scrapy.Spider):
     start_urls = ['https://www.traghettiper-isole-golfo-napoli.it']
     
 rules = (
-        Rule(LinkExtractor(allow=('tp-magazine', ))),
+        Rule(LinkExtractor(allow=('tp-magazine', ), deny=('subsection\.php', ))),
     )
 def parse_items(self, response):
         item = UrlscraperItem()
