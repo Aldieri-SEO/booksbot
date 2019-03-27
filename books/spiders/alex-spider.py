@@ -13,7 +13,7 @@ class MySpider(CrawlSpider):
         Rule(LinkExtractor(allow=('traghetti', ), deny=('subsection\.php', ))),
 
         # Extract links matching 'item.php' and parse them with the spider's method parse_item
-        Rule(LinkExtractor(allow=('item\.php', )), callback='parse_item'),
+        Rule(LinkExtractor(allow=('traghetti', )), callback='parse_item'),
     )
 
     def parse_item(self, response):
