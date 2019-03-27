@@ -4,13 +4,13 @@ from scrapy.linkextractors import LinkExtractor
 
 class MySpider(CrawlSpider):
     name = 'example.com'
-    allowed_domains = ['example.com']
-    start_urls = ['http://www.example.com']
+    allowed_domains = ['traghettilines.it']
+    start_urls = ['https://www.traghettilines.it/']
 
     rules = (
         # Extract links matching 'category.php' (but not matching 'subsection.php')
         # and follow links from them (since no callback means follow=True by default).
-        Rule(LinkExtractor(allow=('category\.php', ), deny=('subsection\.php', ))),
+        Rule(LinkExtractor(allow=('traghetti', ), deny=('subsection\.php', ))),
 
         # Extract links matching 'item.php' and parse them with the spider's method parse_item
         Rule(LinkExtractor(allow=('item\.php', )), callback='parse_item'),
