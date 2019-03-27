@@ -4,9 +4,9 @@ import scrapy
 
 class BooksSpider(scrapy.Spider):
     name = "Alex-tool"
-    allowed_domains = ["https://www.traghettilines.it/"]
+    allowed_domains = ["https://www.traghettiper-isole-golfo-napoli.it/"]
     start_urls = [
-        'https://www.traghettilines.it/',
+        'https://www.traghettiper-isole-golfo-napoli.it/',
     ]
 
     def parse(self, response):
