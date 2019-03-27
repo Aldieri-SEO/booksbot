@@ -1,29 +1,25 @@
-import urlparse
 import scrapy
+from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
-from scrapy.http import Request
+class MySpider(CrawlSpider):
+    name = 'example.com'
+    allowed_domains = ['example.com']
+    start_urls = ['http://www.example.com']
 
+    rules = (
+        # Extract links matching 'category.php' (but not matching 'subsection.php')
+        # and follow links from them (since no callback means follow=True by default).
+        Rule(LinkExtractor(allow=('category\.php', ), deny=('subsection\.php', ))),
 
-class BooksSpider(scrapy.Spider):
-    name = "basic"
-    allowed_domains = ["traghettilines.it"]
-    #                 ^ allowed domain should be name of domain that you wanna scrap
-    start_urls = (
-        'https://www.traghettilines.it/',
+        # Extract links matching 'item.php' and parse them with the spider's method parse_item
+        Rule(LinkExtractor(allow=('item\.php', )), callback='parse_item'),
     )
 
-    def parse(self, response):
-    # My Link Extractor
-        next_page_urls = LinkExtractor(restrict_xpaths='//*[@class="next"]').extract_links(response)
-        # This is how we use LinkExtractor or you can create spider Rule for next page.
-        # Read more about LinkExtractor form https://doc.scrapy.org/en/latest/topics/link-extractors.html
-        for next_page in next_page_urls:
-            yield Request(next_page.url,callback=self.parse_item)
-
     def parse_item(self, response):
-    # My Page Saver    
-        filename = response.url.split("/")[-1] + '.html'
-        with open(filename, 'wb') as f:
-            f.write(response.body)
-            return
+        self.logger.info('Hi, this is an item page! %s', response.url)
+        item = scrapy.Item()
+        item['id'] = response.xpath('//td[@id="item_id"]/text()').re(r'ID: (\d+)')
+        item['name'] = response.xpath('//td[@id="item_name"]/text()').get()
+        item['description'] = response.xpath('//td[@id="item_description"]/text()').get()
+        return item
