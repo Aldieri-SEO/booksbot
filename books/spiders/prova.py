@@ -8,7 +8,7 @@ class BrokenLinksSpider(scrapy.Spider):
 
     def __init__(self, site, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.start_urls = [https://www.ecampania.it/]
+        self.start_urls = [ecampania.it]
         self.DOMAIN = site.split('//')[1]
 
 
