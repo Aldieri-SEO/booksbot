@@ -3,14 +3,12 @@ import scrapy
 
 class BrokenLinksSpider(scrapy.Spider):
     name = 'brokenlink-checker'
-    allowed_domains = ['ecampania.it']
-    start_urls = ['https://www.ecampania.it/']
     handle_httpstatus_list = [404, 500]
 
 
     def __init__(self, site, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.start_urls = [site]
+        self.start_urls = [https://www.ecampania.it/]
         self.DOMAIN = site.split('//')[1]
 
 
